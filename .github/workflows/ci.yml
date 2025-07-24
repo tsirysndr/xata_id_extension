@@ -17,6 +17,7 @@ jobs:
           cargo fmt --all --check
       - name: Run test
         run: |
+          sudo apt-get update && apt-get install libreadline-dev -y
           cargo install --locked cargo-pgrx
           cargo pgrx init
           cargo pgrx test
