@@ -31,9 +31,12 @@ jobs:
         run: |
           type cargo
           cargo fmt --all --check
-      - name: Run test
+      - name: Install cargo pgrx
         run: |
           sudo apt-get update && sudo apt-get install libreadline-dev -y
           cargo install --locked cargo-pgrx
-          cargo pgrx init
-          cargo pgrx test
+      - name: Init pgrx if cache missed
+        if: steps.pgrx-cache.outputs.cache-hit != 'true'
+        run: cargo pgrx init
+      - name: Run tests
+        run: cargo pgrx test
