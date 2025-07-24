@@ -1,0 +1,6 @@
+comment = 'xata_id_extension:  Created by pgrx'
+default_version = '@CARGO_VERSION@'
+module_pathname = 'xata_id_extension'
+relocatable = false
+superuser = true
+trusted = false
