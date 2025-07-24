@@ -5,6 +5,7 @@ when:
 dependencies:
   nixpkgs:
     - cargo
+    - cargo-pgrx
     - rustc
     - rustfmt
 
@@ -14,4 +15,5 @@ steps:
        cargo fmt --all --check
   - name: "cargo test"
     command: |
-       cargo test
+       cargo pgrx init
+       cargo pgrx test

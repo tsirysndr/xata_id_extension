@@ -27,4 +27,4 @@ jobs:
         run: |
           cargo install --locked cargo-pgrx
           cargo pgrx init
-          cargo test
+          cargo pgrx test
