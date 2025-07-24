@@ -10,7 +10,23 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2 
+      - name: Cache pgrx build artifacts
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            ~/.cargo/bin
+            /home/runner/.pgrx
+          key: ${{ runner.os }}-cargo-pgrx-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-cargo-pgrx-
+      - name: Install cargo-pgrx if missing
+        run: |
+          if ! command -v cargo-pgrx &> /dev/null; then
+            cargo install cargo-pgrx --locked
+          fi
       - name: Run fmt
         run: |
           type cargo
