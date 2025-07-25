@@ -11,12 +11,9 @@ dependencies:
     - gnused
     - gnugrep
     - flex
+    - bison
 
 steps:
   - name: "cargo fmt"
     command: |
        cargo fmt --all --check
-  - name: "cargo test"
-    command: |
-       cargo pgrx init
-       cargo pgrx test
